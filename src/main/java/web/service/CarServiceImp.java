@@ -21,6 +21,6 @@ public class CarServiceImp implements CarService {
     }
 
     public List<Car> getCars(int count) {
-        return (count <= 5 && count > 0) ? cars.subList(0, count) : cars;
+        return cars.subList(0, count);
     }
 }

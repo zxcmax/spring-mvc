@@ -21,8 +21,17 @@ public class CarController {
     }
 
     @GetMapping("/cars")
-    public String getCars(@RequestParam(required = false, defaultValue = "5") int count, ModelMap model) {
-        List<Car> cars = carService.getCars(count);
+    public String getCars(@RequestParam(required = false, defaultValue = "5") String count, ModelMap model) {
+        int countInt;
+        try {
+            countInt = Integer.parseInt(count);
+        } catch (NumberFormatException e) {
+            countInt = 5;
+        }
+        if (countInt < 1 || countInt > 5) {
+            countInt = 5;
+        }
+        List<Car> cars = carService.getCars(countInt);
         model.addAttribute("cars", cars);
         return "cars/index";
     }
