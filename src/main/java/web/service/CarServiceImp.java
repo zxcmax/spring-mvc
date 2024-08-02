@@ -20,7 +20,8 @@ public class CarServiceImp implements CarService {
         cars.add(new Car(++CARS_COUNT, "Bentley", 35000));
     }
 
-    public List<Car> getCars(int count) {
-        return cars.subList(0, count);
+    @Override
+    public List<Car> getCarsByCount(int count) {
+        return (count < cars.size()) && (count >= 0) ? cars.subList(0, count) : cars;
     }
 }
