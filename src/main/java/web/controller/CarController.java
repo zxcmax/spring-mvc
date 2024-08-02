@@ -21,14 +21,8 @@ public class CarController {
     }
 
     @GetMapping("/cars")
-    public String getCars(@RequestParam(required = false) String count, ModelMap model) {
-        int countInt;
-        try {
-            countInt = Integer.parseInt(count);
-        } catch (NumberFormatException e) {
-            countInt = Integer.MAX_VALUE;
-        }
-        List<Car> cars = carService.getCarsByCount(countInt);
+    public String getCars(@RequestParam(required = false) Integer count, ModelMap model) {
+        List<Car> cars = carService.getCarsByCount(count);
         model.addAttribute("cars", cars);
         return "cars/index";
     }
